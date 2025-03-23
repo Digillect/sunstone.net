@@ -8,12 +8,9 @@ on:
   push:
     branches:
       - main
+      - 'feature/**'
     tags:
       - 'v*'
-  pull_request:
-    branches:
-      - main
-      - 'feature/**'
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
