@@ -1,3 +1,4 @@
+workflow: GitHubFlow/v1
 assembly-versioning-scheme: MajorMinorPatch
 strategies:
   - MergeMessage
@@ -18,6 +19,15 @@ branches:
     increment: None
     is-release-branch: true
     is-main-branch: true
+  pull-request:
+    regex: ^features?[/-](?<BranchName>.+)$
+    label: '{BranchName}'
+    source-branches: ['main']
+    increment: Inherit
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+
 ignore:
   sha: []
 merge-message-formats: {}
