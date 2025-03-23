@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="SharpYaml" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Digillect.Sunstone.Abstractions\Digillect.Sunstone.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

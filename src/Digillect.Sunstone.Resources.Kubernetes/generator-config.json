@@ -1,0 +1,87 @@
+{
+  "OpenApiFiles": ["swagger-1.30.json"],
+  "Namespace": "Digillect.Sunstone.Resources.Kubernetes",
+  "TopLevelResources": [
+    "io.k8s.api.apps.v1.DaemonSet",
+    "io.k8s.api.apps.v1.Deployment",
+    "io.k8s.api.apps.v1.ReplicaSet",
+    "io.k8s.api.apps.v1.StatefulSet",
+    "io.k8s.api.autoscaling.v1.HorizontalPodAutoscaler",
+    "io.k8s.api.core.v1.ConfigMap",
+    "io.k8s.api.core.v1.Pod",
+    "io.k8s.api.core.v1.PersistentVolumeClaim",
+    "io.k8s.api.core.v1.Secret",
+    "io.k8s.api.core.v1.Service",
+    "io.k8s.api.core.v1.ServiceAccount",
+    "io.k8s.api.batch.v1.CronJob",
+    "io.k8s.api.batch.v1.Job",
+    "io.k8s.api.networking.v1.Ingress",
+    "io.k8s.api.rbac.v1.ClusterRole",
+    "io.k8s.api.rbac.v1.ClusterRoleBinding",
+    "io.k8s.api.rbac.v1.Role",
+    "io.k8s.api.rbac.v1.RoleBinding"
+  ],
+  "Resources": {
+    "core.v1.ConfigMap": {
+      "BaseClass": "Digillect.Sunstone.Resources.Kubernetes.V1CoreConfigMapOrSecret<{0}>",
+      "IgnoredProperties": ["binaryData", "data", "metadata"]
+    },
+    "core.v1.Container": {
+      "PropertiesPriority": ["name", "image", "imagePullSecret", "env", "envFrom"]
+    },
+    "core.v1.PodSpec": {
+      "Properties": {
+        "restartPolicy": {
+          "Type": {
+            "Scalar": {
+              "ClrType": "ContainerRestartPolicy"
+            }
+          }
+        }
+      }
+    },
+    "core.v1.Secret": {
+      "BaseClass": "Digillect.Sunstone.Resources.Kubernetes.V1CoreConfigMapOrSecret<{0}>",
+      "IgnoredProperties": ["data", "metadata", "stringData"]
+    },
+    "meta.v1.ObjectMeta": {
+      "IgnoredProperties": [
+        "clusterName",
+        "creationTimestamp",
+        "deletionTimestamp",
+        "generation",
+        "ownerReferences",
+        "resourceVersion",
+        "selfLink",
+        "uid"
+      ],
+      "PropertiesPriority": [
+        "name",
+        "annotations",
+        "labels"
+      ]
+    },
+    "networking.v1.HTTPIngressPath": {
+      "Properties": {
+        "pathType": {
+          "Type": {
+            "Scalar": {
+              "ClrType": "HTTPIngressPathType"
+            }
+          }
+        }
+      }
+    },
+    "core.v1.HTTPGetAction": {
+      "Properties": {
+        "port": {
+          "Type": {
+            "Scalar": {
+              "ClrType": "NameOrPort"
+            }
+          }
+        }
+      }
+    }
+  }
+}

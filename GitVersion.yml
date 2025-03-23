@@ -1,0 +1,23 @@
+assembly-versioning-scheme: MajorMinorPatch
+strategies:
+  - MergeMessage
+  - TaggedCommit
+  - Mainline
+  - Fallback
+branches:
+  main:
+    regex: ^master$|^main$
+    label: alpha
+    increment: Patch
+    is-release-branch: false
+    is-main-branch: true
+  tags:
+    regex: ^tags/v.+$
+    label: ''
+    source-branches: ['main']
+    increment: None
+    is-release-branch: true
+    is-main-branch: true
+ignore:
+  sha: []
+merge-message-formats: {}
