@@ -52,7 +52,7 @@ jobs:
           dotnet build --no-restore -c Release
           /p:Version="${{steps.version.outputs.MajorMinorPatch}}"
           /p:AssemblyVersion="${{steps.version.outputs.AssemblySemVer}}"
-          /p:AssemblyFileVersion="${{steps.version.outputs.FullSemFileVer}}"
+          /p:AssemblyFileVersion="${{steps.version.outputs.FullSemVer}}"
           /p:InformationalVersion="${{steps.version.outputs.InformationalVersion}}"
 
       - name: Test
