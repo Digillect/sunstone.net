@@ -1,9 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" TreatAsLocalProperty="AssemblyVersion;Version">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--  TreatAsLocalProperty="AssemblyVersion;Version" -->
 
   <PropertyGroup>
     <RootNamespace>Digillect.Sunstone.Resources</RootNamespace>
-    <AssemblyVersion>1.30.0</AssemblyVersion>
-    <Version>1.30.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
