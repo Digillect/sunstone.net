@@ -3,7 +3,7 @@
   "profiles": {
     "DebugRoslynSourceGenerator": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "../Sunstone.Resources.PrometheusOperator/Sunstone.Resources.PrometheusOperator.csproj"
+      "targetProject": "../Digillect.Sunstone.Resources.Kubernetes/Digillect.Sunstone.Resources.Kubernetes.csproj"
     }
   }
 }

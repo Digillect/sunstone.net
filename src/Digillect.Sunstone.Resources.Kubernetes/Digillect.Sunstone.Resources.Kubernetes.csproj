@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <RootNamespace>Digillect.Sunstone.Resources</RootNamespace>
-    <AssemblyVersion>1.30.0</AssemblyVersion>
-    <Version>1.30.0</Version>
+    <AssemblyVersion>1.30.1</AssemblyVersion>
+    <Version>1.30.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
