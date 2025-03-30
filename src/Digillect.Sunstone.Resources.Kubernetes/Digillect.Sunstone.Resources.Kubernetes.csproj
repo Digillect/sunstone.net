@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!--  TreatAsLocalProperty="AssemblyVersion;Version" -->
+
+  <PropertyGroup>
+    <RootNamespace>Digillect.Sunstone.Resources</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="generator-config.json" />
+    <None Remove="swagger-1.30.json" />
+    <AdditionalFiles Include="generator-config.json" />
+    <AdditionalFiles Include="swagger-1.30.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Digillect.Sunstone.Abstractions\Digillect.Sunstone.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Digillect.Sunstone.Resources.SourceGenerator\Digillect.Sunstone.Resources.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

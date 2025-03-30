@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "DebugRoslynSourceGenerator": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../Digillect.Sunstone.Resources.Kubernetes/Digillect.Sunstone.Resources.Kubernetes.csproj"
+    }
+  }
+}

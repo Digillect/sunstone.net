@@ -1,0 +1,80 @@
+name: CI
+
+permissions:
+  checks: write
+  pull-requests: write
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+    tags:
+      - 'v*'
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        if: ${{ !env.ACT }}
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Dotnet information
+        run: dotnet --info
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3.0.0
+        with:
+          versionSpec: 6.0.x
+
+      - name: Determine Version
+        id: version
+        uses: gittools/actions/gitversion/execute@v3.0.0
+        with:
+          useConfigFile: true
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: >
+          dotnet build --no-restore -c Release
+          /p:Version="${{steps.version.outputs.MajorMinorPatch}}"
+          /p:AssemblyVersion="${{steps.version.outputs.AssemblySemVer}}"
+          /p:AssemblyFileVersion="${{steps.version.outputs.FullSemVer}}"
+          /p:InformationalVersion="${{steps.version.outputs.InformationalVersion}}"
+
+      - name: Test
+        continue-on-error: true
+        run: dotnet test --no-build -c Release -- --report-trx
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            test/**/*.trx
+
+      - name: Package
+        run: dotnet pack --no-build -c Release -o artifacts /p:Version="${{ steps.version.outputs.FullSemVer }}"
+
+      - name: Upload package to MyGet
+        if: steps.version.outputs.PreReleaseTag != '' && !github.event.act
+        run: dotnet nuget push "*.nupkg" -k ${{ secrets.MYGET_API_KEY }} -s https://www.myget.org/F/digillect/api/v3/index.json
+        working-directory: artifacts
+
+      - name: Upload package to NuGet
+        if: steps.version.outputs.PreReleaseTag == '' && !github.event.act
+        run: dotnet nuget push "*.nupkg" -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        working-directory: artifacts
