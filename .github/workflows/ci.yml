@@ -51,8 +51,8 @@ jobs:
         run: >
           dotnet build --no-restore -c Release
           /p:Version="${{steps.version.outputs.MajorMinorPatch}}"
-          /p:AssemblyVersion="${{steps.version.outputs.AssemblySemVer}}"
-          /p:AssemblyFileVersion="${{steps.version.outputs.AssemblySemFileVer}}"
+          /p:AssemblyVersion="${{steps.version.outputs.FullSemVer}}"
+          /p:AssemblyFileVersion="${{steps.version.outputs.FullSemFileVer}}"
           /p:InformationalVersion="${{steps.version.outputs.InformationalVersion}}"
 
       - name: Test
