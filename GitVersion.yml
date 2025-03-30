@@ -12,6 +12,14 @@ branches:
     increment: Patch
     is-release-branch: false
     is-main-branch: true
+
+  feature:
+    mode: ContinuousDelivery
+    regex: ^features?[/-](?<BranchName>.+)
+    label: '{BranchName}'
+    increment: Inherit
+    #pre-release-weight: 30000
+
   tags:
     regex: ^tags/v.+$
     label: ''
