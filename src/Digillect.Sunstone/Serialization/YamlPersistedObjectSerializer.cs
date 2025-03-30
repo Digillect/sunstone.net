@@ -1,3 +1,6 @@
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+
 namespace Digillect.Sunstone.Serialization;
 
 public class YamlPersistedObjectSerializer : IPersistedObjectSerializer
@@ -6,11 +9,10 @@ public class YamlPersistedObjectSerializer : IPersistedObjectSerializer
 
 	public string Serialize(PersistableValuesCollection persistableValues)
 	{
-		var settings = new SharpYaml.Serialization.SerializerSettings {
-			NamingConvention = new SharpYaml.Serialization.CamelCaseNamingConvention()
-		};
-
-		var serializer = new SharpYaml.Serialization.Serializer(settings);
+		var serializer = new SerializerBuilder()
+			.WithNamingConvention(CamelCaseNamingConvention.Instance)
+			.WithQuotingNecessaryStrings()
+			.Build();
 
 		using var sw = new StringWriter();
 
